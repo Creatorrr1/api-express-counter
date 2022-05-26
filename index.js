@@ -23,29 +23,26 @@ app.get("/counter", (req, res) => {
 
 // POST /counter/increment- Increments the counter on the server and returns the current value.
 app.post("/counter/increment", (req, res) => {
-  console.log("counter is being incremented");
-  const upCounter = counter.counter + 1;
-  res.json({ Description: "Counter is incremented by 1", Value: upCounter });
+  counter.counter++;
+  res.json(counter);
 });
 
 // POST /counter/decrement- Decrements a counter on the server and returns the current value.
 app.post("/counter/decrement", (req, res) => {
-  console.log("counter is being decremented");
-  const downCounter = counter.counter - 1;
-  res.json({ Description: "Counter is decrements by 1", Value: downCounter });
+  counter.counter--;
+  res.json(counter);
 });
 
 // POST /counter/double- Double the value of the counter on the server and returns the current value.
 app.post("/counter/double", (req, res) => {
-  const doubleCounter = (counter.counter + 1) * 2;
-  res.json({ Description: "Counter is doubled", Value: doubleCounter });
+  counter.counter *= 2;
+  res.json(counter);
 });
 
 // DELETE /counter - Resets the counter to 0 and returns the current value.
 app.delete("/counter", (req, res) => {
-  console.log("counter is being deleted and the value returns to 0");
-  // how do delete an item without the id
-  res.json();
+  counter.counter = 0;
+  res.json(counter);
 });
 
 const port = 3030;
